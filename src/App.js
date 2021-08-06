@@ -7,13 +7,14 @@ import {StaffData} from "./staffJSON";
 function App() {
 
     //Khoi tao bien - khoi tao object - kieu du lieu array
+    //Ten bien, ham khoi tao bien
     const [staffInfo, setStaffInfo] = useState([]);
 
-    // Khoi tao function - set value cho staffInfo
+
     const onSetStaffInfo = (item) => {
         setStaffInfo(item);
     }
-    // JSX dinh dang reactJS
+
     return (
         <Container>
             <Row>
@@ -24,7 +25,7 @@ function App() {
                 </Col>
             </Row>
             <Row>
-                {/*Duyet qua 1 mang giong foreach*/}
+
                 {StaffData.map((item, key) => {
                     return (
                         <Col key={key} md={4} sm={12} lg={6}>
@@ -35,9 +36,9 @@ function App() {
                     )
                 })}
             </Row>
-            {/*item la object trong staffJson*/}
+
             <Row>
-                {/*lay du lieu tu staffInfo*/}
+
                 <Col lg={6} md={12} sm={12}>
                     <div className="box-information">
                         <p>FullName: <span> {staffInfo.FullName}</span></p>
