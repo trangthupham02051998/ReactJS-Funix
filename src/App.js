@@ -10,11 +10,11 @@ function App() {
     //Ten bien, ham khoi tao bien
     const [staffInfo, setStaffInfo] = useState([]);
 
-
+    // Khoi tao function - set value cho staffInfo
     const onSetStaffInfo = (item) => {
         setStaffInfo(item);
     }
-
+    // JSX dinh dang reactJS
     return (
         <Container>
             <Row>
