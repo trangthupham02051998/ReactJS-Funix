@@ -38,7 +38,7 @@ function App() {
             </Row>
 
             <Row>
-
+                {/*lay du lieu tu staffInfo*/}
                 <Col lg={6} md={12} sm={12}>
                     <div className="box-information">
                         <p>FullName: <span> {staffInfo.FullName}</span></p>
