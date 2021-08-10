@@ -1,8 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import {useState} from "react";
-import {StaffData} from "./staffJSON";
+import {STAFFS} from "./staffs";
+import StaffList from "./Components/StaffListComponent";
+import dateFormat from 'dateformat';
 //Default
 function App() {
 
@@ -24,28 +26,17 @@ function App() {
                     </div>
                 </Col>
             </Row>
-            <Row>
-                {/*Duyet qua 1 mang giong foreach*/}
-                {StaffData.map((item, key) => {
-                    return (
-                        <Col key={key} md={4} sm={12} lg={6}>
-                            <Button onClick={() => {
-                                onSetStaffInfo(item)
-                            }}>{item.FullName}</Button>
-                        </Col>
-                    )
-                })}
-            </Row>
+                <StaffList handleClickApp={onSetStaffInfo} staffListData={STAFFS}/>
             {/*item la object trong staffJson*/}
             <Row>
                 {/*lay du lieu tu staffInfo*/}
                 <Col lg={6} md={12} sm={12}>
                     <div className="box-information">
-                        <p>FullName: <span> {staffInfo.FullName}</span></p>
-                        <p>BornDays: <span> {staffInfo.BornDays}</span></p>
-                        <p>Deparments: <span> {staffInfo.Deparments}</span></p>
-                        <p>LeaveDaysLeft: <span>{staffInfo.LeaveDaysLeft}</span></p>
-                        <p>WorkDaysMore:<span>{staffInfo.WorkDaysMore}</span></p>
+                        <p>FullName: <span> {staffInfo.name}</span></p>
+                        <p>BornDays: <span> {dateFormat(staffInfo.doB, "dd/MM/yyyy")}</span></p>
+                        <p>Deparments: <span> {staffInfo.department.name}</span></p>
+                        <p>LeaveDaysLeft: <span>{staffInfo.annualLeave}</span></p>
+                        <p>WorkDaysMore:<span>{staffInfo.overTime}</span></p>
                     </div>
                 </Col>
             </Row>
