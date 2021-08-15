@@ -19,26 +19,27 @@ function renderDish(dish) {
         );
 }
 
-function renderComments(comment) {
-    {
-        if(comment != null){
-            return (
-                <div>
-                    <div><strong>Comment</strong></div>
-                    {comment.map(c => {
-                        return <div>
-                            <div>{c.comment}</div>
-                            <div>-- {c.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(c.date)))}
-                            </div>
+function RenderComments({comments, addComment, dishId}) {
+    if (comments != null) {
+        return (
+            <div>
+                <div><strong>Comment</strong></div>
+                {comments.map(c => {
+                    return <div>
+                        <div>{c.comment}</div>
+                        <div>-- {c.author}, {new Intl.DateTimeFormat('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: '2-digit'
+                        }).format(new Date(Date.parse(c.date)))}
                         </div>
-                    })}
-                </div>
-            )
-        }else{
-            return null
-        }
+                    </div>
+                })}
+            </div>
+        )
+    } else {
+        return null
     }
-
 }
 
 
@@ -53,7 +54,8 @@ const DishDetail = (props) => {
                 </div>
                 <div className="col-12 col-md-5 m-1">
                     {props.dish?.name ? <div>{props.dish?.name}</div> : null}
-                    {renderComments(comments)}
+                    <RenderComments comments={comments} addComment={props.addComment}
+                                    dishId={props.dish.id}/>
                 </div>
             </div>
         </div>

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { Card, CardImg, CardImgOverlay,
-    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import {Breadcrumb, BreadcrumbItem, Card, CardImg, CardImgOverlay, CardTitle} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 class Menu extends Component {
 
@@ -13,7 +12,7 @@ class Menu extends Component {
         const menu = this.props.dishes.map((dish) => {
             return (
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <RenderMenuItem dish={dish} />
+                    <RenderMenuItem dish={dish}/>
                 </div>
             );
         });
@@ -26,7 +25,7 @@ class Menu extends Component {
                     </Breadcrumb>
                     <div className="col-12">
                         <h3>Menu</h3>
-                        <hr />
+                        <hr/>
                     </div>
                 </div>
                 <div className="row">
@@ -38,11 +37,11 @@ class Menu extends Component {
     }
 }
 
-function RenderMenuItem ({dish, onClick}) {
+function RenderMenuItem({dish, onClick}) {
     return (
         <Card>
-            <Link to={`/menu/${dish.id}`} >
-                <CardImg width="100%" src={dish.image} alt={dish.name} />
+            <Link to={`/menu/${dish.id}`}>
+                <CardImg width="100%" src={dish.image} alt={dish.name}/>
                 <CardImgOverlay>
                     <CardTitle>{dish.name}</CardTitle>
                 </CardImgOverlay>
