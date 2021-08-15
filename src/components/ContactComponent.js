@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Col, Row, FormFeedback } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Row, FormFeedback, Button} from 'reactstrap';
 
 
     class Contact extends Component {
@@ -24,6 +24,7 @@ import { Form, FormGroup, Label, Input, Col, Row, FormFeedback } from 'reactstra
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleInputChange = this.handleInputChange.bind(this);
             this.handleBlur = this.handleBlur.bind(this);
+            this.handleLogin = this.handleLogin.bind(this);
         }
 
         handleInputChange(event) {
@@ -68,6 +69,13 @@ import { Form, FormGroup, Label, Input, Col, Row, FormFeedback } from 'reactstra
             return errors;
         }
 
+        handleLogin(event) {
+            this.toggleModal();
+            alert("Username: " + this.username.value + " Password: " + this.password.value
+                + " Remember: " + this.remember.checked);
+            event.preventDefault();
+
+        }
         handleSubmit(event) {
             console.log('Current State is: ' + JSON.stringify(this.state));
             alert('Current State is: ' + JSON.stringify(this.state));
@@ -82,59 +90,25 @@ import { Form, FormGroup, Label, Input, Col, Row, FormFeedback } from 'reactstra
                             <h3>Send us your Feedback</h3>
                         </div>
                         <div className="col-12 col-md-9">
-                            <Form onSubmit={this.handleSubmit}>
-                                <FormGroup row>
-                                    <Label htmlFor="firstname" md={2}>First Name</Label>
-                                    <Col md={10}>
-                                        <Input type="text" id="firstname" name="firstname"
-                                               placeholder="First Name"
-                                               value={this.state.firstname}
-                                               valid={errors.firstname === ''}
-                                               invalid={errors.firstname !== ''}
-                                               onBlur={this.handleBlur('firstname')}
-                                               onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.firstname}</FormFeedback>
-                                    </Col>
+                            <Form onSubmit={this.handleLogin}>
+                                <FormGroup>
+                                    <Label htmlFor="username">Username</Label>
+                                    <Input type="text" id="username" name="username"
+                                           innerRef={(input) => this.username = input} />
                                 </FormGroup>
-                                <FormGroup row>
-                                    <Label htmlFor="lastname" md={2}>Last Name</Label>
-                                    <Col md={10}>
-                                        <Input type="text" id="lastname" name="lastname"
-                                               placeholder="Last Name"
-                                               value={this.state.lastname}
-                                               valid={errors.lastname === ''}
-                                               invalid={errors.lastname !== ''}
-                                               onBlur={this.handleBlur('lastname')}
-                                               onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.lastname}</FormFeedback>
-                                    </Col>
+                                <FormGroup>
+                                    <Label htmlFor="password">Password</Label>
+                                    <Input type="password" id="password" name="password"
+                                           innerRef={(input) => this.password = input}  />
                                 </FormGroup>
-                                <FormGroup row>
-                                    <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
-                                    <Col md={10}>
-                                        <Input type="tel" id="telnum" name="telnum"
-                                               placeholder="Tel. Number"
-                                               value={this.state.telnum}
-                                               valid={errors.telnum === ''}
-                                               invalid={errors.telnum !== ''}
-                                               onBlur={this.handleBlur('telnum')}
-                                               onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.telnum}</FormFeedback>
-                                    </Col>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" name="remember"
+                                               innerRef={(input) => this.remember = input}  />
+                                        Remember me
+                                    </Label>
                                 </FormGroup>
-                                <FormGroup row>
-                                    <Label htmlFor="email" md={2}>Email</Label>
-                                    <Col md={10}>
-                                        <Input type="email" id="email" name="email"
-                                               placeholder="Email"
-                                               value={this.state.email}
-                                               valid={errors.email === ''}
-                                               invalid={errors.email !== ''}
-                                               onBlur={this.handleBlur('email')}
-                                               onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.email}</FormFeedback>
-                                    </Col>
-                                </FormGroup>
+                                <Button type="submit" value="submit" color="primary">Login</Button>
                             </Form>
                         </div>
                     </div>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
+    Button, Modal, ModalHeader, ModalBody,
+    Form, Input, Label } from 'reactstrap';
 
 
 class Header extends Component {
@@ -10,13 +12,20 @@ class Header extends Component {
 
         this.toggleNav = this.toggleNav.bind(this);
         this.state = {
-            isNavOpen: false
+            isNavOpen: false,
+            isModalOpen: false
         };
     }
 
     toggleNav() {
         this.setState({
             isNavOpen: !this.state.isNavOpen
+        });
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+    toggleModal() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
         });
     }
 
@@ -29,6 +38,11 @@ class Header extends Component {
                         <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
+                                <Nav className="ml-auto" navbar>
+                                    <NavItem>
+                                        <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+                                    </NavItem>
+                                </Nav>
                                 <NavItem>
                                     <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                                 </NavItem>
@@ -45,6 +59,13 @@ class Header extends Component {
                         </Collapse>
                     </div>
                 </Navbar>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+
+                    </ModalBody>
+                </Modal>
+
             </div>
         );
     }
