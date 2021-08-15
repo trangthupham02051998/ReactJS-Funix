@@ -1,8 +1,7 @@
-import { DISHES } from './shared/dishes';
+import {DISHES} from './shared/dishes';
 import './App.css';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import {Component} from "react";
-import React from 'react'
+import {Navbar, NavbarBrand} from 'reactstrap';
+import React, {Component} from "react";
 import Menu from './components/MenuComponent';
 import Main from './components/MainComponent';
 
@@ -14,6 +13,7 @@ class App extends Component {
             dishes: DISHES
         };
     }
+
     // hàm render dùng để hiển thị nội dung
     render() {
         return (
@@ -23,8 +23,7 @@ class App extends Component {
                         <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
                     </div>
                 </Navbar>
-                <Menu dishes={this.state.dishes} />
-                <Main />
+                <Main/>
             </div>
         );
     }
