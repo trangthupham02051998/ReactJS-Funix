@@ -9,16 +9,7 @@ export default function Footer()
         <div className="footer">
             <Container>
                 <Row className="justify-content-center">
-                    <Col lg={4} offset={1} sm={2}>
-                        <h5>Links</h5>
-                        <ul className="list-unstyled">
-                            <li><Link to="/home">Home</Link></li>
-                            <li><Link to="/aboutus">About Us</Link></li>
-                            <li><Link to="/menu">Menu</Link></li>
-                            <li><Link to="/contactus">Contact Us</Link></li>
-                        </ul>
-                    </Col>
-                    <Col lg={7} sm={5}>
+                    <Col lg-offset={2} lg={4} sm={12}>
                         <h5>Our Address</h5>
                         <address>
                             121, Clear Water Bay Road<br />
@@ -30,7 +21,7 @@ export default function Footer()
                             confusion@food.net</a>
                         </address>
                     </Col>
-                    <Col lg={12} sm={4} className="align-self-center">
+                    <Col lg={6} className="align-self-center">
                         <div className="text-center">
                             <a className="btn btn-social-icon btn-google" href="http://google.com/+"><i className="fa fa-google-plus"></i></a>
                             <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i className="fa fa-facebook"></i></a>
