@@ -2,6 +2,7 @@ import React from 'react';
 import {Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import CommentForm from './CommentFormComponent'
 
 
 function renderDish(dish) {
@@ -21,10 +22,14 @@ function renderDish(dish) {
         );
 }
 
-function RenderComments({comments, addComment, dishId}) {
+function RenderComments({comments, postComment, dishId}) {
+    const post = (rating, author, comment) => {
+        postComment(dishId, rating, author, comment);
+    }
     if (comments != null) {
         return (
             <div>
+                <CommentForm postComment={post} />
                 <div><strong>Comment</strong></div>
                 {comments.map(c => {
                     return <div>
@@ -46,8 +51,9 @@ function RenderComments({comments, addComment, dishId}) {
 
 
 const DishDetail = (props) => {
+    console.log('comment', props)
     //Return về div để không lỗi
-    const comments = props.dish != null ? props.dish.comments : null;
+    const comments = props.comments != null ? props.comments : null;
     if (props.isLoading) {
         return(
             <div className="container">
@@ -75,7 +81,7 @@ const DishDetail = (props) => {
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         {props.dish?.name ? <div>{props.dish?.name}</div> : null}
-                        <RenderComments comments={comments} addComment={props.addComment}
+                        <RenderComments comments={comments} postComment={props.postComment}
                                         dishId={props.dish.id}/>
                     </div>
                 </div>
