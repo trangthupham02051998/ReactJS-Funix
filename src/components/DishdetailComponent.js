@@ -1,4 +1,5 @@
 import React from 'react';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import {Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
@@ -8,6 +9,11 @@ import CommentForm from './CommentFormComponent'
 function renderDish(dish) {
     if (dish != null)
         return (
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
             <Card>
                 <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                 <CardBody>
@@ -15,6 +21,7 @@ function renderDish(dish) {
                     <CardText>{dish.description}</CardText>
                 </CardBody>
             </Card>
+            </FadeTransform>
         );
     else
         return (
@@ -31,17 +38,18 @@ function RenderComments({comments, postComment, dishId}) {
             <div>
                 <CommentForm postComment={post} />
                 <div><strong>Comment</strong></div>
-                {comments.map(c => {
-                    return <div>
-                        <div>{c.comment}</div>
-                        <div>-- {c.author}, {new Intl.DateTimeFormat('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: '2-digit'
-                        }).format(new Date(Date.parse(c.date)))}
-                        </div>
-                    </div>
-                })}
+                <Stagger in>
+                        {comments.map((comment) => {
+                            return (
+                                <Fade in>
+                                <li key={comment.id}>
+                                <p>{comment.comment}</p>
+                                <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                </li>
+                                </Fade>
+                            );
+                        })}
+                        </Stagger>
             </div>
         )
     } else {
